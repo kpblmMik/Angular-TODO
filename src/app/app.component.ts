@@ -1,14 +1,15 @@
 import { Component } from "@angular/core";
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from "@angular/common";
+import { ItemComponent } from "./item/item.component";
+import { Item } from "./item";
 @Component({
   selector: "app-root",
   standalone: true,
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  imports: [
-    NgFor
-  ]
+  imports: [NgFor, NgIf, ItemComponent]
 })
+
 export class AppComponent {
   title = "todo";
 
@@ -36,5 +37,10 @@ export class AppComponent {
       done: false
     });
   }
+
+  remove(item: Item) {
+    this.allItems.splice(this.allItems.indexOf(item), 1);
+  }
+  
   
 }
